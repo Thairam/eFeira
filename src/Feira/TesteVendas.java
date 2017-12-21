@@ -1,10 +1,11 @@
 package Feira;
+
 /*
 Docente: Danilo Abreu       Disciplina: LPII (Programação Orientada a Objetos)  linguagem Utilizada:    Java
 Aluno: Thairam Michel Santos Ataide     Curso: Ciências da Computação       Turno: Noite
 Tarefa: Além de Transmitir conhecimento a tarefa tem o objetivo de fazer com que o aluno com o que lhe foi apresentado 
 em sala de aula, simule um sistema de "Feira" com mecanismos muito similares que simulam um sistema de compra, venda e organização de estoque.
-*/
+ */
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -39,8 +40,8 @@ public class TesteVendas {
                                     Produto prod = Produtos.getProduto(s.nextInt());
                                     System.out.printf("Informe a quantidade: ");
                                     quantidade = s.nextInt();
-                                    p.inserirItem(new Itens(prod, quantidade));
                                     prod.diminuirEstoque(quantidade);
+                                    p.inserirItem(new Itens(prod, quantidade));
                                     System.out.println("\nProduto Adicionado ao Carrinho");
                                     Menus.listaProdutos();
                                 } catch (Exception e) {
@@ -49,10 +50,13 @@ public class TesteVendas {
                                 Menus.Comprar();
                                 op = s.nextInt();
                             } while (op != 0);
-
-                            Pedidos.addPedido(p);
-                            Pedidos.getListaPedidos();
-                            p.imprimirPedido();
+                            try {
+                                Pedidos.addPedido(p);
+                                Pedidos.getListaPedidos();
+                                p.imprimirPedido();
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());
+                            }
 
                         } else {
                             if (Pedidos.getListaPedidos().isEmpty()) {
@@ -62,6 +66,7 @@ public class TesteVendas {
                                 break;
                             }
                         }
+
                     }
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
@@ -89,22 +94,22 @@ public class TesteVendas {
                         Menus.admin();
                         op = s.nextInt();
                     } while (op < 0 || op > 5);
-                    
+
                     if (op == 0) {
                         break;
                     }
-                    
+
                     switch (op) {
                         case 1:
                             do {
                                 Menus.orgEstoque();
                                 op = s.nextInt();
                             } while (op < 0 || op > 3);
-                            
+
                             if (op == 0) {
                                 break OUTER;
                             }
-                            
+
                             switch (op) {
                                 case 1:
                                     // limpando o buffer do teclado
@@ -142,7 +147,7 @@ public class TesteVendas {
                                         if (Produtos.getlista().isEmpty()) {
                                             break;
                                         }
-                                        
+
                                         System.out.println("\nInforme o ID do produto: ");
                                         Produto prod = Produtos.getProduto(s.nextInt());
                                         Produtos.removeProduto(prod);
@@ -158,7 +163,9 @@ public class TesteVendas {
                                         int ID;
                                         try {
                                             Menus.listaProdutos();
-                                            if (Produtos.getlista().isEmpty()) break;
+                                            if (Produtos.getlista().isEmpty()) {
+                                                break;
+                                            }
                                             System.out.println("Informe o ID do produto: ");
                                             ID = s.nextInt();
                                             Produto prod = Produtos.getProduto(ID);

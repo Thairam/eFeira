@@ -46,13 +46,19 @@ public abstract class Pedidos {
     }
 
     //adiciona um pedido a lista de pedidos 
-    public static void addPedido(Pedido p) {
+    public static void addPedido(Pedido p) throws Exception{
+        if(p.itens.isEmpty()){
+           throw new Exception("\nCarrinho Vazio"); 
+        }
         pedidos.add(p);
     }
 
-    public static void imprimePedido() {
+    public static void imprimePedido() throws Exception{
         for (int i = 0; i < pedidos.size(); i++) {
             System.out.println(pedidos.get(i));
+        }
+        if(pedidos.isEmpty()){
+            throw new Exception("Pedido não encontrado");
         }
     }
 }

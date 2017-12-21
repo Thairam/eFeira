@@ -7,7 +7,7 @@ public class Pedido {
     private int ID;
     private static int cont = 1;
     
-    private ArrayList<Itens> itens = new ArrayList();
+    public ArrayList<Itens> itens = new ArrayList();
     
     // Faz com o que o ID de cada pedido seja único
     public Pedido() {
