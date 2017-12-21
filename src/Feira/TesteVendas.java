@@ -208,9 +208,9 @@ public class TesteVendas {
                         case 2:
                             // ver rendimento atual
                             Menus.linha3();
-                            System.out.println("| Total em Abastecimento: " + String.format("   R$ %,8.2f |", ItensComprados.valorEstoque()));
-                            System.out.println("| Total em vendas: " + String.format("          R$ %,8.2f |", Pedidos.getVendas()));
-                            System.out.println("| Lucro: " + String.format("                    R$ %,8.2f |", Pedidos.getLucro()));
+                            System.out.println("| Total em Abastecimento: " + String.format("   R$ %,8.2f  |", ItensComprados.valorEstoque()));
+                            System.out.println("| Total em vendas: " + String.format("          R$ %,8.2f  |", Pedidos.getVendas()));
+                            System.out.println("| Lucro: " + String.format("                    R$ %,8.2f  |", Pedidos.getLucro()));
                             System.out.println("| Lucro em [%]: " + String.format("                 %,7.2f%% |", (Pedidos.getLucro() * 100) / Pedidos.getVendas()));
                             Menus.linha3();
                             break;
